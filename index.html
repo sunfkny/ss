@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        window.onload = function () { loadTime(); loadXMLDoc(); }
+        function loadTime() {
+            var timejsonp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                timejsonp = new XMLHttpRequest();
+            }
+            else {
+                // IE6, IE5 浏览器执行代码
+                // timejsonp=new ActiveXObject("Microsoft.XMLHTTP");
+                alert("求求你换个Chrome浏览器吧");
+            }
+            timejsonp.onreadystatechange = function () {
+                if (timejsonp.readyState == 4 && timejsonp.status == 200) {
+                    jsonObj = JSON.parse(timejsonp.responseText);
+                    // document.getElementById("myTipText").innerHTML=timejsonp.responseText;
+                    document.getElementById("myTipTime").innerHTML = "更新时间：" + jsonObj.time;
+
+
+
+                }
+            }
+            //timejsonp.open("GET", "time.json", true);
+            timejsonp.open("GET", "https://dev.tencent.com/u/sunfkny/p/ss/git/raw/master/time.json", true);
+            timejsonp.send();
+        }
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                // IE6, IE5 浏览器执行代码
+                // xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                alert("求求你换个Chrome浏览器吧");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    jsonObj = JSON.parse(xmlhttp.responseText);
+                    // document.getElementById("myTipText").innerHTML=xmlhttp.responseText;
+                    document.getElementById("myTipText").innerHTML = "当前共有" + jsonObj.length + "个节点";
+
+                    var sslinks = "";
+                    for (i = 0; i < jsonObj.length; i++) {
+                        sslinks += jsonObj[i].sslink + "\n";
+
+                    }
+                    document.getElementById("mySS").value = sslinks;
+                    /*
+                                        var table = document.getElementById("table");
+                                        for (var i = 0; i < jsonObj.length; i++) {
+                                            var row = table.insertRow(table.rows.length);
+                                            var c1 = row.insertCell(0);
+                                            c1.innerHTML = jsonObj[i].title;
+                                            var c2 = row.insertCell(1);
+                                            c2.innerHTML = jsonObj[i].ip;
+                                            var c3 = row.insertCell(2);
+                                            c3.innerHTML = jsonObj[i].port;
+                                            var c4 = row.insertCell(3);
+                                            c4.innerHTML = jsonObj[i].password;
+                                            var c5 = row.insertCell(4);
+                                            c5.innerHTML = jsonObj[i].plugin;
+                                            var c6 = row.insertCell(5);
+                                            c6.innerHTML ='<a href="' +jsonObj[i].sslink+'">'+jsonObj[i].sslink+'</a>';
+                                        }
+                    */
+
+                }
+            }
+            //xmlhttp.open("GET", "info.json", true);
+            xmlhttp.open("GET", "https://dev.tencent.com/u/sunfkny/p/ss/git/raw/master/info.json", true);
+
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+
+<body>
+    <div class="wrapper">
+        <a id="myTipTime" style="font-size:20px;">Loading</a>
+        <br>
+        <a id="myTipText" style="font-size:20px;">Please wait</a>
+        <br>
+        <!-- Target -->
+        <textarea id="mySS" value=""></textarea>
+        <br>
+        <!-- Trigger -->
+        <button class="btn" data-clipboard-target="#mySS">
+            Copy to clipboard
+        </button>
+    </div>
+    <br>
+    <!--
+    <table id="table" border="1" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>title</th>
+            <th>ip</th>
+            <th>port</th>
+            <th>password</th>
+            <th>plugin</th>
+            <th>links</th>
+        </tr>
+    </table>
+-->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script>
+        var clipboard = new ClipboardJS('.btn');
+        clipboard.on('success', function (e) {
+            console.log(e);
+            alert("Copy success");
+        });
+        clipboard.on('error', function (e) {
+            console.log(e);
+            alert("Copy error");
+        });
+    </script>
+    <style type="text/css">
+        textarea {
+            border: 0;
+            border-radius: 10px;
+            background-color: #ccc;
+            resize: none;
+            width: 355px;
+            height: 100px;
+            padding: 10px;
+        }
+
+        button {
+            background-color: #ddd;
+            padding: 12px 26px;
+            border-radius: 10px;
+        }
+    </style>
+</body>
+
+
+</html>
