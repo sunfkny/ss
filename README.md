@@ -1,1 +1,1 @@
-#[sunfkny.coding.me/ss](https://sunfkny.coding.me/ss)
+#[sunfkny.github.me/ss](https://sunfkny.github.me/ss)
