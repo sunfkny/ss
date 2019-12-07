@@ -1,5 +1,7 @@
 *.db-shm
 *.db-wal
 *.db
-getVpsInfo.json
+*.json
+!time.json
+!info.json
 
