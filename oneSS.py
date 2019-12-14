@@ -22,12 +22,12 @@ sslink="ss://" + b64(conf['method'] + ":" + conf['password']) + "@" + conf['serv
 print(sslink)
 
 
-info=[]
-info[0]['ip']=conf['server']):
-info[0]['password']=conf['password']
-info[0]['plugin']=conf['plugin']
-info[0]['port']=conf['server_port']
-info[0]['sslink']=sslink
+info={}
+info['ip']=conf['server']
+info['password']=conf['password']
+info['plugin']=conf['plugin']
+info['port']=conf['server_port']
+info['sslink']=sslink
 
 
 infoJSON="/data/data/com.termux/files/home/ss/info.json"
