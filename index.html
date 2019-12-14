@@ -22,14 +22,12 @@
                     jsonObj = JSON.parse(timejsonp.responseText);
                     // document.getElementById("myTipText").innerHTML=timejsonp.responseText;
                     document.getElementById("myTipTime").innerHTML = "更新时间：" + jsonObj.time;
-
-
-
                 }
             }
             timejsonp.open("GET", "time.json", true);
             timejsonp.send();
         }
+        
         function loadXMLDoc() {
             var xmlhttp;
             if (window.XMLHttpRequest) {
@@ -45,14 +43,14 @@
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     jsonObj = JSON.parse(xmlhttp.responseText);
                     // document.getElementById("myTipText").innerHTML=xmlhttp.responseText;
-                    document.getElementById("myTipText").innerHTML = "当前共有" + jsonObj.length + "个节点";
+                    // document.getElementById("myTipText").innerHTML = "当前共有" + jsonObj.length + "个节点";
+                    
+                    // var sslinks = "";
+                    // for (i = 0; i < jsonObj.length; i++) {
+                    //     sslinks += jsonObj[i].sslink + "\n";
 
-                    var sslinks = "";
-                    for (i = 0; i < jsonObj.length; i++) {
-                        sslinks += jsonObj[i].sslink + "\n";
-
-                    }
-                    document.getElementById("mySS").value = sslinks;
+                    // }
+                    document.getElementById("mySS").value = jsonObj.sslink;
                     /*
                                         var table = document.getElementById("table");
                                         for (var i = 0; i < jsonObj.length; i++) {
@@ -85,7 +83,7 @@
     <div class="wrapper">
         <a id="myTipTime" style="font-size:20px;">Loading</a>
         <br>
-        <a id="myTipText" style="font-size:20px;">Please wait</a>
+        <!-- <a id="myTipText" style="font-size:20px;">Please wait</a> -->
         <br>
         <!-- Target -->
         <textarea id="mySS" value=""></textarea>
