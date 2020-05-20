@@ -4,6 +4,41 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+        <a id="myTipText">Loading...</a>
+        <a id=myCopyArea>Loading...</a>
+        
+        
+    </div>
+
+    <table id="table" border="1" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>title</th>
+            <th>ip</th>
+            <th>port</th>
+            <th>password</th>
+            <th>plugin</th>
+        </tr>
+    </table>
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script>
+    var clipboard = new ClipboardJS('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+        alert("Copy success");
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+        alert("Copy error");
+    });
+    </script>
     <script>
         window.onload = function () { loadXMLDoc(); }
 
@@ -45,40 +80,6 @@
             xmlhttp.open("GET", "info.json", true);
             xmlhttp.send();
         }
-    </script>
-</head>
-
-
-<body>
-
-    <div class="wrapper">
-        <a id="myTipText">Loading...</a>
-        <a id=myCopyArea>Loading...</a>
-        
-        
-    </div>
-
-    <table id="table" border="1" cellspacing="0" cellpadding="0">
-        <tr>
-            <th>title</th>
-            <th>ip</th>
-            <th>port</th>
-            <th>password</th>
-            <th>plugin</th>
-        </tr>
-    </table>
-    
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-    <script>
-    var clipboard = new ClipboardJS('.btn');
-    clipboard.on('success', function(e) {
-        console.log(e);
-        alert("Copy success");
-    });
-    clipboard.on('error', function(e) {
-        console.log(e);
-        alert("Copy error");
-    });
     </script>
 
 </body>
