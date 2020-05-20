@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        window.onload = function () { loadXMLDoc(); }
+
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                // IE6, IE5 浏览器执行代码
+                // xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                alert("求求你换个chrome浏览器吧");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    jsonObj = JSON.parse(xmlhttp.responseText);
+                    // document.getElementById("myTipText").innerHTML=xmlhttp.responseText;
+                    document.getElementById("myTipText").innerHTML = "当前共有" + jsonObj.length + "个节点";
+                    document.getElementById("myCopyArea").innerHTML = "<button class='btn' data-clipboard-text='"+ xmlhttp.responseText +"'>Copy to clipboard</button>"
+
+                    var table = document.getElementById("table");
+                    for (var i = 0; i < jsonObj.length; i++) {
+                        var row = table.insertRow(table.rows.length);
+                        var c1 = row.insertCell(0);
+                        c1.innerHTML = jsonObj[i].title;
+                        var c2 = row.insertCell(1);
+                        c2.innerHTML = jsonObj[i].ip;
+                        var c3 = row.insertCell(2);
+                        c3.innerHTML = jsonObj[i].port;
+                        var c4 = row.insertCell(3);
+                        c4.innerHTML = jsonObj[i].password;
+                        var c5 = row.insertCell(4);
+                        c5.innerHTML = jsonObj[i].plugin;
+                    }
+
+                }
+            }
+            xmlhttp.open("GET", "info.json", true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+        <a id="myTipText">Loading...</a>
+        <a id=myCopyArea>Loading...</a>
+        
+        
+    </div>
+
+    <table id="table" border="1" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>title</th>
+            <th>ip</th>
+            <th>port</th>
+            <th>password</th>
+            <th>plugin</th>
+        </tr>
+    </table>
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script>
+    var clipboard = new ClipboardJS('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+        alert("Copy success");
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+        alert("Copy error");
+    });
+    </script>
+
+</body>
+
+
+</html>
